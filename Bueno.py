@@ -2,7 +2,6 @@ import os #listar archivos
 import csv #Archivos csv
 import matplotlib.pyplot as plt
 
-
 def menu_principal():
     print('\nAPLICACIÓN CLI DE ANÁLISIS DE DATOS')
     print('-----------------------------------')
@@ -84,7 +83,7 @@ def contar_vocales():
 def primeras_15_lineas():
         num_filas = 15
         with open('sample2.csv', 'r') as csvfile:
-            lector = csv.reader(csvfile)
+            lector = csv.reader(csvfile , delimiter = ',' )
             encabezados = next(lector) 
             print("Encabezados:", encabezados)
             for i, fila in enumerate(lector):
@@ -94,7 +93,105 @@ def primeras_15_lineas():
 
 
 
+      
 
+def estadisticas():
+    with open('sample2.csv', 'r') as csvfile:
+        lector = csv.reader(csvfile, delimiter=',')
+        encabezados = next(lector)
+        
+        # Mostrar encabezados con números
+        print("Columnas disponibles:")
+        for i, encabezado in enumerate(encabezados):
+            print(f"{i}. {encabezado}", end='  ')
+        
+        # Pedir columna al usuario
+        columna = int(input("\n\n¿Qué columna quiere analizar? (Número): "))
+        
+        numeros = []
+        palabras = []
+        
+        # Leer datos de la columna
+        for fila in lector:
+            if len(fila) > columna:
+                dato = fila[columna].strip()
+                if dato:
+                    try:
+                        numeros.append(float(dato))  # Si es número
+                    except:
+                        palabras.append(dato)  # Si es texto
+        
+        print(f"\n--- Análisis de '{encabezados[columna]}' ---")
+        print(f"Datos válidos: {len(numeros) + len(palabras)}")
+        
+        # Si es numérica: calcular estadísticas
+        if numeros:
+            numeros_ordenados = sorted(numeros)
+            promedio = sum(numeros) / len(numeros)
+            mitad = len(numeros) // 2
+            
+            # Mediana (depende si es par o impar)
+            mediana = numeros_ordenados[mitad] if len(numeros) % 2 != 0 else \
+                     (numeros_ordenados[mitad - 1] + numeros_ordenados[mitad]) / 2
+            
+            print("\n Estadísticas numéricas:")
+            print(f"Promedio: {promedio:.2f}")
+            print(f"Mediana: {mediana:.2f}")
+            print(f"Mínimo: {min(numeros)}")
+            print(f"Máximo: {max(numeros)}")
+        
+        # Si es texto: contar palabras
+        if palabras:
+            print("\n Palabras más repetidas:")
+            frecuencias = {}
+            for palabra in palabras:
+                frecuencias[palabra] = frecuencias.get(palabra, 0) + 1
+            
+            # Ordenar de mayor a menor frecuencia
+            for palabra, veces in sorted(frecuencias.items(), key=lambda x: -x[1]):
+                print(f"'{palabra}': {veces} veces")
+
+
+def graficar_columna():
+    # Abrir el archivo CSV
+    with open('sample2.csv', 'r') as csvfile:
+        lector = csv.reader(csvfile, delimiter=',')
+        encabezados = next(lector)  # Leer la primera fila (encabezados)
+        
+        # Mostrar las columnas disponibles
+        print("Columnas disponibles:")
+        for i, encabezado in enumerate(encabezados):
+            print(f"{i}. {encabezado}")
+        
+        # Pedir al usuario que elija una columna
+        columna = int(input("\nIngrese el número de la columna a graficar: "))
+        
+        datos = []
+        
+        # Leer los datos de la columna seleccionada
+        for fila in lector:
+            if len(fila) > columna:  # Verificar que la fila tenga la columna
+                valor = fila[columna].strip()
+                if valor:  # Ignorar celdas vacías
+                    try:
+                        datos.append(float(valor))  # Convertir a número
+                    except ValueError:
+                        print(f"¡Advertencia: El valor '{valor}' no es numérico y será omitido!")
+        
+        # Verificar si hay datos para graficar
+        if not datos:
+            print("Error: No hay datos numéricos en esta columna.")
+            return
+        
+        # Crear la gráfica
+        plt.figure(figsize=(10, 5))  # Tamaño del gráfico
+        plt.plot(datos, 'b-', marker='o', label=encabezados[columna])  # Línea azul con puntos
+        plt.title(f"Gráfica de la columna '{encabezados[columna]}'")  # Título
+        plt.xlabel("Número de fila")  # Eje X
+        plt.ylabel("Valor")  # Eje Y
+        plt.grid(True)  # Mostrar cuadrícula
+        plt.legend()  # Mostrar leyenda
+        plt.show()  # Mostrar la gráfica
 
 
 
@@ -104,8 +201,12 @@ def main():
         opcion = menu_principal()
         
         if opcion == '1':
-            print(os.getcwd())
-            print(os.listdir())
+            ruta = os.getcwd()
+            print(f"\n    La ruta para actual es: ", {ruta}) 
+            arch = os.listdir()
+            print("Los archivos en la ruta actual: ")
+            for archivo in arch:
+                print(archivo)
         elif opcion == '2':
             while True:
                 opcion_txt = submenu_txt()
@@ -125,9 +226,9 @@ def main():
                 if opcion_csv == '1':
                     primeras_15_lineas()
                 elif opcion_csv == '2':
-                    print("")
+                    estadisticas()
                 elif opcion_csv == '3':
-                    print("")
+                    graficar_columna()
                 elif opcion_csv == '4':
                     break 
                 else:
