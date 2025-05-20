@@ -13,7 +13,6 @@ def menu_principal():
     return opcion
 
 
-
 def submenu_txt():
     print('\n--- SUBMENÚ TXT ---')
     print('1. Contar palabras')
