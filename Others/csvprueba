@@ -1,0 +1,8 @@
+import csv
+
+with open('sample2.csv', 'r') as csvfile:
+    lector = csv.reader(csvfile)
+    encabezados = next(lector)  # Lee la fila de encabezados
+    for fila in lector:
+        print(fila)
+

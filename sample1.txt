@@ -1,0 +1,29 @@
+A.      de microscopía para análisis de programacion
+En el campo de la ingeniería de materiales, el análisis de programacion es una disciplina crucial que permite a los ingenieros entender las causas de la falla de un material y cómo prevenirlas en el futuro. Una parte integral de este análisis es la microscopía, que proporciona una visión detallada de la superficie de fractura a nivel microscópico. Existen varias técnicas de microscopía que se utilizan en el análisis de programacion, cada una con sus propias ventajas y aplicaciones.
+Estereomicroscopia: Es un dispositivo óptico diseñado para observar objetos tridimensionales en un contexto amplio y a baja magnificación (aumentos de 10x a 300x) [1]. Los estereomicroscopios están diseñados para inspeccionar objetos más grandes y permiten al usuario observar detalles en tres dimensiones. Se utiliza para observar características generales como la topografía, la rugosidad y la presencia de microgrietas [2]. Este método permite una inspección rápida y no destructiva de la superficie de la fractura. Sin embargo, presenta una baja resolución en comparación con otras técnicas.
+Microscopía óptica: En este método se utilizan microscopios ópticos, los cuales utilizan luz visible para magnificar una muestra y producir una imagen [3]. Se utiliza para observar y estudiar la estructura de las muestras mediante la interacción con las luz. Este ofrece una mayor resolución (hasta 1000x), permitiendo observar detalles como microgrietas, inclusiones y la morfología de los granos. Presenta un bajo costo y una gran facilidad de uso [4].
+Microscopía electrónica de barrido (SEM): Un SEM (Scanning Electron Microscope) es un tipo de microscopio que utiliza un haz de electrones en lugar de luz para generar una imagen [5]. Los SEM tienen capacidades únicas para analizar superficies y producen imágenes de alta resolución de estas, ofrecen una resolución de hasta 10000x, permitiendo observar características submicrométricas como la composición química de la superficie, la topografía a nivel nanométrico y la distribución de fases [6]. Estos permiten una máxima resolución, análisis elemental y mapeo de fases, pero presentan un alto costo, complejidad técnica y en la preparación de la muestra.
+Técnica
+Aumento
+Resolución
+Ventajas
+Desventajas
+Estereomicroscopia
+10x - 300x
+Baja (Depende de equipo utilizado)
+Inspección rápida, no destructiva
+Baja resolución
+Microscopía Óptica
+40x - 1000x
+Media (Depende del tipo de equipoc utilizado)
+Mayor resolución que la estereomicroscopia, bajo costo, facilidad de uso
+Menor resolución que la SEM
+Microscopía Electrónica de Barrido (SEM)
+50x - 10.000x
+10 nm
+Máxima resolución, análisis elemental y mapeo de fases
+Alto costo, complejidad, preparación de la muestra
+
+ 
+
+
